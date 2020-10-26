@@ -1,6 +1,6 @@
 # 두 개 뽑아서 더하기
 
-[문제](https://programmers.co.kr/learn/courses/30/lessons/64061)
+[문제](https://programmers.co.kr/learn/courses/30/lessons/49993)
 
 
 ```java
