@@ -2,6 +2,9 @@
 
 [문제](https://programmers.co.kr/learn/courses/30/lessons/68935)
 
+## Tip - Integer.toString(number, 3)
+java에서는 위와 같이 진법 변환을 제공한다. number를 3진법으로 변환하여 문자열로 반환하는 코드이다.
+아래 풀이에서는 해당 함수를 사용하지 않고 풀이하였다.
 
 ## 코드
 ```java
@@ -44,5 +47,6 @@ class Solution {
     }
 }
 ```
+
 
 
