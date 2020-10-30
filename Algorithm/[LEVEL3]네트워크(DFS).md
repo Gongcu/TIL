@@ -26,6 +26,15 @@ class Solution {
         return answer;
     }
     private void dfs(int[][] computers, int point, boolean[] visited){
+        ...
+    }
+
+}
+```
+
+### Stack을 이용한 DFS
+```java
+private void dfs(int[][] computers, int point, boolean[] visited){
         Stack<Integer> stack = new Stack();
         stack.push(point);
         while(!stack.empty()){
@@ -38,8 +47,16 @@ class Solution {
             }
         }
     }
-
-}
+```
+### 재귀호출을 이용한 DFS
+```java
+private void recursive_dfs(int[][] computers, int point, boolean[] visited){
+        visited[point]=true;
+        for(int i=0; i<computers[point].length; i++){
+            if(computers[point][i]==1 && !visited[i])
+                recursive_dfs(computers, i, visited);
+        }
+    }
 ```
 
 
