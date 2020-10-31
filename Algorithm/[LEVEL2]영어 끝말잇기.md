@@ -1,4 +1,4 @@
-# 두 개 뽑아서 더하기
+# 영어 끝말 잇기
 
 [문제](https://programmers.co.kr/learn/courses/30/lessons/12981)
 
