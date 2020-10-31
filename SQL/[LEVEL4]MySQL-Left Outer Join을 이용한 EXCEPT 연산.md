@@ -5,7 +5,7 @@
 ## 쿼리 요약: 입양된 기록(ANIMAL_OUTS)은 있으나, 보호소로 들어온 기록(ANIMAL_INS)이 없는 동물
 입양된 기록(A 테이블) - 보호소 등록 기록(B 테이블)을 구하는 것을 의미
 
-```
+```sql
 SELECT O.ANIMAL_ID, O.NAME
 FROM ANIMAL_OUTS O LEFT OUTER JOIN ANIMAL_INS I ON I.ANIMAL_ID=O.ANIMAL_ID
 WHERE I.ANIMAL_ID IS NULL
