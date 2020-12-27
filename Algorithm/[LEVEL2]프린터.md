@@ -1,9 +1,9 @@
-# 3진법 뒤집기
+# 프린터
 
 [문제](https://programmers.co.kr/learn/courses/30/lessons/42587)
 
 ## Tip
-- ArrayLSIT를 Queue 처럼 활용: remove(0)
+- ArrayList를 Queue 처럼 활용: remove(0)
 - Map.entry("key","value")를 활용한 리스트
 
 
