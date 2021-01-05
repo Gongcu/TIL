@@ -5,7 +5,7 @@
 ## Note
 - LRU 메커니즘의 이해
 
-## 일반적인 풀이
+## 코드
 ```java
 import java.util.*;
 class Solution {
