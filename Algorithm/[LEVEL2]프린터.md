@@ -16,7 +16,6 @@ class Solution {
     public int solution(int[] priorities, int location) {
         int answer = 0;
         int max;
-        //QUEUE <LOCATION, PRIORITY> 
         
         for(int i=0; i<priorities.length; i++)
             queue.add(Map.entry(i,priorities[i]));
