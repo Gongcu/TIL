@@ -6,10 +6,55 @@
 그래프에서 연결 요소를 너비 우선으로 탐색하는 알고리즘.
 
 ### Note
-- 그래프화
 - BFS로 최단거리 구하여 반환(타겟 지점에 도착할 경우 해당 거리 반환)
+- 풀이1(비그래프): 두 단어가 바뀔 수 있고 간 적 없으면 queue에 추가, 없으면 패스
+- 풀이2(그래프화): 두 단어가 바뀔 수 있으면 1, 없으면 0
 
-## 코드
+### 간단한 풀이
+```java
+import java.util.*;
+class Solution {
+    public int solution(String begin, String target, String[] words) {
+        int answer = 0;
+        int[] path = new int[words.length];
+        
+        answer = bfs(begin,target,words,path);
+        
+        return answer;
+    }
+    
+    int bfs(String begin,String target,String[] words, int[] path){
+        Queue<String> queue = new LinkedList();
+        List<String> list=Arrays.asList(words);
+        queue.add(begin);
+        
+        while(!queue.isEmpty()){
+            String curr = queue.poll();
+            int currPathLength = list.indexOf(curr)!=-1?path[list.indexOf(curr)]:0;
+            for(int i=0; i<words.length; i++){
+                if(path[i]==0 && changable(curr,words[i])){
+                    path[i]=currPathLength+1;
+                    queue.add(words[i]);
+                    if(words[i].equals(target))
+                        return path[i];
+                }
+            }
+        }
+        return 0;
+    }
+    
+    boolean changable(String word1, String word2){
+        int count = 0;
+        for(int i=0; i<word1.length(); i++){
+            if(word1.charAt(i) != word2.charAt(i))
+                if(++count == 2) return false;
+        }
+        return true;
+    }
+} 
+```
+
+### 그래프화한 풀이
 ```java
 import java.util.*;
 class Solution {

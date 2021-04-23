@@ -5,28 +5,22 @@
 
 ```java
 import java.util.*;
+
 class Solution {
     public int solution(int[] scoville, int K) {
         int answer = 0;
-        PriorityQueue<Integer> pQueue = new PriorityQueue();
+        PriorityQueue<Integer> pq = new PriorityQueue();
         
-        for(int i=0; i<scoville.length; i++)
-            pQueue.add(scoville[i]);
-            
-        while(pQueue.size()>=2){
-            if(pQueue.peek()>=K)
-                break;
-            else{
-                int min = pQueue.poll();
-                int nextMin = pQueue.poll();
-                pQueue.add(min + nextMin*2);
-                answer++;
-            }
+        for(int i=0; i<scoville.length; i++) pq.add(scoville[i]);
+        
+        
+        while(pq.size()>1 && pq.peek()<K){
+            int food = pq.poll()+(pq.poll()*2);
+            pq.add(food);
+            answer++;
         }
         
-        if(answer==scoville.length-1 && pQueue.peek() < K){
-            answer = -1;
-        }
+        if(pq.peek()<K) answer=-1;
         
         return answer;
     }

@@ -3,11 +3,13 @@
 [문제](https://programmers.co.kr/learn/courses/30/lessons/42587)
 
 ## Tip
-- ArrayList를 Queue 처럼 활용: remove(0)
-- Map.entry("key","value")를 활용한 리스트
+- 복잡한 풀이법
+    - ArrayList를 Queue 처럼 활용: remove(0)
+    - Map.entry("key","value")를 활용한 리스트
+- 간단한 풀이법
+    - 모든 인쇄물의 위치를 추적하지 않고 목표 인쇄물만 추적
 
-
-## 코드
+## 복잡한 풀이
 ```java
 import java.util.*;
 class Solution {
@@ -50,6 +52,56 @@ class Solution {
             if(max<queue.get(i).getValue())
                 max = queue.get(i).getValue();
         return max;
+    }
+}
+```
+
+## 간단한 풀이
+```java
+import java.util.*;
+class Solution {
+    public int solution(int[] priorities, int location) {
+        int answer = 0;
+        int print=0;
+        LinkedList<Integer> list = new LinkedList();
+        
+        for(int i=0; i<priorities.length; i++)
+            list.add(priorities[i]);
+        
+        while(true){
+            if(max(list,print)){
+                if(print==location){
+                    answer=print;
+                    break;
+                }
+                print++;
+            }else{
+                int item = list.get(print);
+                list.removeFirst();
+                list.add(item);
+                
+                if(location!=print)
+                    location--;
+                else
+                    location=list.size()-1;
+            }
+        }
+        
+        //i번 인덱스는 i+1번 째
+        return answer+1;
+    }
+    
+    //현재 인쇄물이 이후 인쇄물보다 우선순위가 높음
+    boolean max(LinkedList<Integer> list, int maxValueIndex){
+        if(maxValueIndex>=list.size())
+            return true;
+        int max = list.get(maxValueIndex);
+        for(int i=maxValueIndex+1; i<list.size(); i++){
+            if(list.get(i)>max){
+                return false;
+            }
+        }
+        return true;
     }
 }
 ```

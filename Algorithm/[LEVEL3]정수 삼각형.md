@@ -8,28 +8,14 @@
 ```java
 import java.util.*;
 class Solution {
-    int[] a ;//= new int[(500+501)/2]; //a[0] is empty
     public int solution(int[][] triangle) {
-        a = new int[triangle.length*triangle.length];
         int answer = 0;
-        int curr=triangle.length+1;
-        int count = 1;
-        //init base value
-        for(int i=triangle.length-1;i>=0; i--)
-            for(int j=0; j<triangle[i].length;j++)
-                a[count++]=triangle[i][j];
-
-        
-        
-        for(int height=triangle.length-1; height>=1; height--){
-            for(int j=0; j<triangle[height-1].length; j++){
-                a[curr]+=Math.max(a[curr-height-1],a[curr-height]);
-                curr++;
+        for(int i=triangle.length-2; i>=0; i--){
+            for(int j=0; j<triangle[i].length; j++){
+                triangle[i][j]+=Math.max(triangle[i+1][j],triangle[i+1][j+1]);
             }
         }
-
-        answer = a[curr-1];
-        
+        answer = triangle[0][0];
         return answer;
     }
 }
