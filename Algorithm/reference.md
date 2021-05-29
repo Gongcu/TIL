@@ -61,8 +61,62 @@ Collections.sort(books, new Comparator<Book>() {
 Collections.sort(books, (o1, o2) -> o2.getPrice()-o1.getPrice()); 
 ```
 
+## 이진 탐색
+최적화 문제에서 값을 바로 구하기 어려운 경우, yes or no의 문제로 바꾸어 해결할 수 있다.
+##### 예제. 떡이 n개가 주어지고 원하는 총 떡의 길이 m이 주어진다. 그리고 각 떡의 길이에 해당하는 배열이 주어진다. 이 경우에 떡을 x cm의 절단기로 자를 때 잘라 남겨진 떡의 총 길이가 m보다 크면서 최대가 되는 x값을 구하라. (떡의 개수는 최대 10^9)
+
+```cpp
+//n:떡의 수, m: 목표
+int start =0;
+int end = 1e9;
+int result = 0;
+while(start<=end){
+    long long sum = 0;
+    int mid = (start+end)/2;
+    for(int i=0; i<n; i++){
+        if(arr[i]>mid)
+            sum=sum+(arr[i]-mid);
+    }
+    if(sum<m){
+        end = mid-1;
+    }else{
+        result = mid;
+        start - mid+1;
+    }
+        
+}
+```
+
+
 ## Two pointer
 투 포인터는 좌측 포인터(작은 값), 우측 포인터(큰 값) 각각을 두고 범위를 좁혀가는 알고리즘이다.
+
+##### 예제. {2,3,4,2,1,5} 배열이 있을 때, 부분 배열의 합이 5인 경우의 총 개수를 구하라.
+```java
+int[] arr = {2,3,4,2,1,5};
+int n = 6;
+int target = 5;
+int sum = 0;
+int count = 0;
+int start, end;
+for(start=0; start< n; start++){
+    while(sum < target && end < n)
+        sum+=arr[end++];
+    if(sum==target)
+        count++;
+        sum-=arr[start];
+}
+```
+
+## 구간 합
+특정 배열이 있을 때, i~j 까지 구간의 인덱스 값들의 합을 구하는 문제가 있을 경우 접두사 합을 구한다.
+이후 i~j까지의 합을 구할 경우, `접두사 합[j+1]-접두사 합[i]`으로 계산한다.
+i~j 까지 반복하면서 값을 구하는 O(n)의 시간 복잡도를 O(1)로 변경 가능하다.
+```
+(ex) 배열: {10,20,30,40,50} --> 접두사 합:{0,10,30,60,100,150}
+
+접두사합[3+1]-접두사합[1] = 100-10 = 90
+```
 
 ## BFS
 ```java
@@ -113,10 +167,10 @@ void DFS(int start, int[][] graph; boolean[] visited){
 ## DP(Dynamic Programming)
 이전 결과가 이후 결과에 사용됨(메모이제이션, 테뷸레이션) + 점화식
 - 최적 부분 구조
-- 중복되는 부분 문제
+- <u>중복되는 부분 문제</u>
 
 #### 메모이제이션(Memoization)
-재귀함수로 구현되며 Top-down(하향식)으로 구현하며 필요한 계산만 하게 된다.
+재귀함수로 구현되며 Top-down(하향식)으로 구현하며 필요한 계산만 하게 된다. (메모이제이션 할 배열 필요.)
 
 #### 테뷸레이션(Tabulation)
 반복문으로 구현되며 Bottom-up(상향식)으로 구현되며 모든 계산을 하게 됨.
@@ -132,44 +186,43 @@ ex. 화폐 단위가 1/5/10이고 106원이 존재할 때, 가장 적은 수의 
 
 
 ## 트라이(Trie)
-문자열 검색 및 처리를 위한 알고리즘. 하나의 문자를 노드로 생각하여 트리 구조에 저장하게 된다.
+문자열 검색 및 처리를 위한 알고리즘. 하나의 문자를 노드로 생각하여 트리 구조에 저장하게 된다. 각 노드는 <Char,Node>로 구성되는 맵을 포함한다.
  - 장점. 문자열 검색에 O(n)의 시간 필요
  - 기존 방식. 문자열을 String으로 저장하여 m개의 문자열 중 길이 n의 문자열을 찾는 경우 O(mn)이 소요됨
 
 ![trie](../images/trie.png)
 
-```kotlin
+```java
 class Trie{
-    data class Node(
-        var word:String?=null,
-        val children:MutableMap<Char,Node> = mutableMapOf()
-    )
-
-    private val root = Node()
-
-    fun insert(word:String){
-        var currentNode=root
-        for(char in word){
-            if(currentNode.children[char]==null)
-                currentNode.children[char] = Node()
-            currentNode = currentNode.children[char]!! //삽입한 노드로 이동(or 이미 존재하는 노드로 이동)
-        }
-        currentNode.word = word
+    class Node{
+        String word=null,
+        HashMap<Character,Node> children= new HashMap();
+        constructor();
     }
 
-    fun search(word:String) : Boolean{
-        var currentNode=root
-        for(char in word){
-            if(currentNode.children[char]==null)
-                return false
-            currentNode=currentNode.children[char]!!
+    Node root = new Node(); //루트에는 단어 없음
+
+    void insert(String word){
+        Node curr = root;
+        for(char ch : word.toCharArray()){
+            if(curr.children.get(ch);
+                curr.children.put(ch,new Node());
+            curr=curr.children.get(ch);
         }
-        return currentNode.word != null
+        curr.word = word;
     }
 
+    void search(String word){
+        Node curr = root;
+        for(char ch : word.toCharArray()){
+            if(curr.children.get(ch)==null)
+                return false;
+            curr = curr.children.get(ch);
+        }
+        return curr.word !=null;
+    }
 }
 ```
-
 
 
 ## 다익스트라 알고리즘
@@ -255,9 +308,25 @@ fun union(x:Int, y:Int){
 }
 ```
 
+## 에라토스테네스의 체
+2~n까지의 수 중 소수를 더 효율적으로 찾는 알고리즘
+1. 2~n까지 자연수를 나열한다.
+2. 배열에서 처리하지 않은 가장 작은 수 i를 선택한다.
+3. 남은 수 중에서 i의 배수를 소수가 아님으로 처리한다. (i는 제거하지 않음)
+4. 2와 3번 과정을 계속 반복한다.
 
+```python
+import math
 
-## 위상 정렬
+#모두 소수로 초기화
+array = [True for i in range(n+1)]
 
-
-
+# 제곱근인 가운데 수 까지만 소수가 존재하는 구간
+for i in range(2,int(math.sqrt(n))+1):
+    # 소수일 경우 2부터 시작하여 1씩 늘려가며 곱하여 이를 모두 False처리
+    if array[i] == True:
+        j=2
+        while i*j <=n:
+            array[i*j]=False
+            j+=1
+```
