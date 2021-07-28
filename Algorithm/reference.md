@@ -271,27 +271,73 @@ class Trie{
 0->2의 최단경로: 2(번 인덱스) -> 0 을 역순으로 취한 0 -> 2
 ```
 
-```cpp
- void shortedPath(int v){
-    for(int i=0; i<n; i++){
-        dist[i]=length[v][i]; //한번에 갈 수 있는 거리 초기화, 한번에 못 갈 경우 INF
-        path[i]=v; //출발점으로 초기화
-        s[i]=false; //사용한 노드
+###### 구현 방법
+1. 거리를 무한으로 초기화, 시작점은 0으로 초기화, 방문여부는 모두 false로 초기화
+2. 시작 간선 추가 우선순위큐에 시작 간선 추가 new Edge(start,0)
+3. 우선순위큐에서 값을 추출하여(거리가 최소인 간선), 해당 간선으로부터 다음 도착지들까지 다음을 비교
+4. (다음 도착지 거리 + 현재 간선까지의 거리) < dist[다음 도착지]인 경우 갱신하고 큐에 
+
+```java
+//graph.get(X)는 start에서 다음으로 가는 간선 정보 포함
+ArrayList<ArrayList<Edge>> graph = new ArrayList();
+
+//노드 수 만큼 리스트 추가 (0은 사용 안함)
+for(int i=0; i<n+1; i++){
+    graph.add(new ArrayList());
+}
+for(int i=0; i<times.length; i++){
+        int[] time = times[i];
+        int start =time[0];
+        int point = time[1];
+        int dist = time[2];
+        //start에서 point까지 가는데 dist 소요
+        
+        graph.get(start).add(new Edge(point,dist));
+}
+class Edge implements Comparable<Edge>{
+    int point;
+    int dist;
+    Node(int point, int dist){
+        this.point=point;
+        this.dist=dist;
     }
-    s[v]=true;
-    for(int i=0; i<n-2; i++){
-        int u=choose(n); //방문하지 않은 점 중 거리가 최소인 점
-        s[u]=true; 
-        for(int w=0; w<n; j++){
-            if(!s[w]){
-                //걸쳐 가는게 빠른 경우 걸쳐 가도록 초기화
-                if(dist[w]>(dist[u]+length[u][w])){
-                    dist[w]=dist[u]+length[u][w];
-                    path[w]=u; //걸쳐 가는 노드 표시
-                }
+        
+    @Override
+    public int compareTo(Edge o) {
+        return this.dist - o.dist;
+    }
+}
+int[] dijkstra(int start, ArrayList<ArrayList<Edge>> graph, int n){
+    PriorityQueue<Edge> pq = new PriorityQueue<>();
+    boolean[] visited = new boolean[n+1];
+    int[] dist = new int[n+1];
+        
+    Arrays.fill(dist,Integer.MAX_VALUE);
+    dist[start]=0;
+    pq.add(new Edge(start,0));
+        
+        
+    while (!pq.isEmpty()) {
+        Edge edge =pq.poll();
+        int curr = edge.point;
+        int distance = edge.dist;
+            
+        if(visited[curr])
+            continue;
+        visited[curr] = true;
+        
+        //현재 노드에서 방문 가능한 다음 노드들에 대하여
+        for(Edge next : graph.get(curr)){
+            int cost = next.dist + distance;
+            if(cost < dist[next.point]){
+                //거쳐가는게 짧은 경우 갱신
+                dist[next.point] = cost;
+                pq.add(new Edge(next.point, cost));
             }
         }
     }
+        
+    return dist;
 }
 
 ```
