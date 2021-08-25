@@ -319,18 +319,14 @@ int[] dijkstra(int start, ArrayList<ArrayList<Edge>> graph, int n){
         
     while (!pq.isEmpty()) {
         Edge edge =pq.poll();
-        int curr = edge.point;
-        int distance = edge.dist;
             
-        if(visited[curr])
+        if(visited[edge.point])
             continue;
-        visited[curr] = true;
+        visited[edge.point] = true;
         
-        //현재 노드에서 방문 가능한 다음 노드들에 대하여
-        for(Edge next : graph.get(curr)){
-            int cost = next.dist + distance;
+        for(Edge next : graph.get(edge.point)){
+            int cost = next.dist + edge.dist;
             if(cost < dist[next.point]){
-                //거쳐가는게 짧은 경우 갱신
                 dist[next.point] = cost;
                 pq.add(new Edge(next.point, cost));
             }
@@ -341,6 +337,54 @@ int[] dijkstra(int start, ArrayList<ArrayList<Edge>> graph, int n){
 }
 
 ```
+
+
+###### 인접리스트 일반 구현
+```java
+public int[] dijkstra(List<List<Edge>> graph, int start, int N){
+    boolean[] visited = new boolean[N + 1];
+    int[] dist = new int[N + 1];
+
+    Arrays.fill(dist,Integer.MAX_VALUE);
+    dist[start] = 0;
+    visited[start] = true;
+
+    for(Edge edge : graph.get(start))
+        dist[edge.dest] = edge.length;
+
+
+    for(int i=0; i<N-1; i++){
+        int min = findNotVisitedNearestNode(dist,visited);
+        if(min==-1)
+            continue;
+        visited[min]=true;
+
+        for(Edge edge : graph.get(min)){
+            if(dist[edge.dest] > edge.length + dist[min])
+                dist[edge.dest] = edge.length + dist[min];
+        }
+    }
+
+    return dist;
+}
+
+public int findNotVisitedNearestNode(int[] dist, boolean[] visited) {
+    int min = Integer.MAX_VALUE;
+    int minNode = -1;
+
+    for(int i=1; i<dist.length; i++){
+        if(visited[i])
+            continue;
+        if(min > dist[i]){
+            min = dist[i];
+            minNode = i;
+        }
+    }
+
+    return minNode;
+}
+```
+
 
 ## 크루스칼 알고리즘(Kruskal Algorithm)
 최소 신장 트리(MST; Minimum Spanning Tree)를 구하는데 사용되는 알고리즘. 노드가 N개로 이루어질 경우,
