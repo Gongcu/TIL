@@ -1,3 +1,11 @@
+# 두 지역을 잇는 다리
+
+[문제](https://www.acmicpc.net/problem/17352)
+
+### Note
+- 그래프 탐색 문제
+
+```java
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -67,3 +75,4 @@ public class P17352 {
     }
 
 }
+```

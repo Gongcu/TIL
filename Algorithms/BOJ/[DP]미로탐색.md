@@ -1,4 +1,5 @@
 # 미로탐색
+[문제](https://www.acmicpc.net/problem/2178)
 
 ## 아이디어
 - DP를 활용하여 문제를 해결한다.

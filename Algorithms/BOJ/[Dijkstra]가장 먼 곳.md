@@ -1,6 +1,5 @@
-# 3진법 뒤집기
-
-[문제](https://programmers.co.kr/learn/courses/30/lessons/68935)
+# 가장 먼 곳
+[문제](https://www.acmicpc.net/problem/22865)
 
 ### 문제 설명
 - N개의 노드가 존재한다. (1~N번) 

@@ -1,3 +1,22 @@
+## 의미 있는 문제
+- BOJ/가장 먼 곳(다익스트라)[문제](https://www.acmicpc.net/problem/22865)⭐
+- BOJ/키 순서(플로이드 워셜)[문제](https://www.acmicpc.net/problem/2458)⭐
+- BOJ/미로 탐색(DP)[문제](https://www.acmicpc.net/problem/2178)⭐
+- BOJ/사다리(이진 탐색)[문제](https://www.acmicpc.net/problem/2022)
+
+- LeetCode/빗물 트래픽(분할 정복)[문제](https://leetcode.com/problems/trapping-rain-water/)
+- LeetCode/가장 긴 팰린드롬 문자열(DP)[문제](https://leetcode.com/problems/longest-palindromic-substring/)⭐
+- LeetCode/중복 문자 제거-사전식 나열(스택))⭐
+- LeetCode/반복되는 문자가 없는 가장 긴 문자열(문자열)[문제](https://leetcode.com/problems/longest-substring-without-repeating-characters/)⭐
+- LeetCode/Course Schedule(DFS 사이클)[문제](https://leetcode.com/problems/course-schedule/)⭐
+- LeetCode/자기 자신을 제외한 곱(구현)[문제](https://leetcode.com/problems/product-of-array-except-self/)
+
+- PROGRAMMERS/n 진수 게임(구현)[문제](https://programmers.co.kr/learn/courses/30/lessons/17687)
+- PROGRAMMERS/단속카메라(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42884)⭐
+- PROGRAMMERS/가장 큰 수(문자열, 정렬)[문제](https://programmers.co.kr/learn/courses/30/lessons/42746)
+- PROGRAMMERS/다리를 지나는 트럭(큐)[문제](https://programmers.co.kr/learn/courses/30/lessons/42583)⭐
+
+
 ## 다중 조건 정렬
 아래는 학번, 이름, 주소순으로 정렬하는 예제
 ```java

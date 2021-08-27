@@ -1,3 +1,12 @@
+# 사다리
+[문제](https://www.acmicpc.net/problem/2022)
+
+
+### Note
+- 이진 탐색 문제
+- 삼각형 비례 법칙으로 해결
+
+```python
 import sys
 import math
 from decimal import Decimal
@@ -26,3 +35,4 @@ while right-left>0.000001 :
 
 result = "{:.3f}".format(length)
 print(result)
+```
