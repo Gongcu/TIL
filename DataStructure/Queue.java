@@ -3,6 +3,7 @@ import Node;
 public class Queue {
     Node front;
     Node rear;
+    int size = 0;
 
     void add(int value){
         Node node = new Node(value,null);
@@ -11,6 +12,7 @@ public class Queue {
         else
             rear.next = node;
             rear = node;
+        size++;
     }
 
     //1개 남은 경우 유의(rear가 삭제할 노드를 참조할 수 있기에 명시적으로 null 처리)
@@ -21,6 +23,7 @@ public class Queue {
             rear= front = null;
         else
             front = front.next;
+        size--;
     }
 
     void print(){

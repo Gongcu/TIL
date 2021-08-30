@@ -3,10 +3,14 @@ import Node;
 public class Stack {
     Node top;
 
-    void pop(){
+    int pop(){
         if(top==null)
-            return;
-        top=top.next;
+            return -1;
+
+        Node temp = top;
+        top = top.next;
+
+        return temp.key;
     }
 
     void push(int value){
