@@ -6,7 +6,7 @@
 
 - LeetCode/빗물 트래픽(분할 정복)[문제](https://leetcode.com/problems/trapping-rain-water/)
 - LeetCode/가장 긴 팰린드롬 문자열(DP)[문제](https://leetcode.com/problems/longest-palindromic-substring/)⭐
-- LeetCode/중복 문자 제거-사전식 나열(스택))⭐
+- LeetCode/중복 문자 제거-사전식 나열(스택)[문제](https://leetcode.com/problems/remove-duplicate-letters/)⭐
 - LeetCode/반복되는 문자가 없는 가장 긴 문자열(문자열)[문제](https://leetcode.com/problems/longest-substring-without-repeating-characters/)⭐
 - LeetCode/Course Schedule(DFS 사이클)[문제](https://leetcode.com/problems/course-schedule/)⭐
 - LeetCode/자기 자신을 제외한 곱(구현)[문제](https://leetcode.com/problems/product-of-array-except-self/)
@@ -16,6 +16,8 @@
 - PROGRAMMERS/가장 큰 수(문자열, 정렬)[문제](https://programmers.co.kr/learn/courses/30/lessons/42746)
 - PROGRAMMERS/다리를 지나는 트럭(큐)[문제](https://programmers.co.kr/learn/courses/30/lessons/42583)⭐
 
+
+- HackerRank/Product Defects(DP)
 
 ## 다중 조건 정렬
 아래는 학번, 이름, 주소순으로 정렬하는 예제
