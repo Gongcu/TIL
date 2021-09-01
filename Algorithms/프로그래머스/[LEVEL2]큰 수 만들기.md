@@ -1,4 +1,4 @@
-# 두 개 뽑아서 더하기 - 그리디
+# 큰 수 만들기 - 그리디
 
 [문제](https://programmers.co.kr/learn/courses/30/lessons/42883)
 

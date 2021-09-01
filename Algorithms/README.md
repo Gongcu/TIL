@@ -10,10 +10,12 @@
 - LeetCode/반복되는 문자가 없는 가장 긴 문자열(문자열)[문제](https://leetcode.com/problems/longest-substring-without-repeating-characters/)⭐
 - LeetCode/Course Schedule(DFS 사이클)[문제](https://leetcode.com/problems/course-schedule/)⭐
 - LeetCode/자기 자신을 제외한 곱(구현)[문제](https://leetcode.com/problems/product-of-array-except-self/)
+- LeetCode/Preoder,Inorder로 트리 만들기 [문제](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
 - PROGRAMMERS/n 진수 게임(구현)[문제](https://programmers.co.kr/learn/courses/30/lessons/17687)
 - PROGRAMMERS/단속카메라(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42884)⭐
 - PROGRAMMERS/가장 큰 수(문자열, 정렬)[문제](https://programmers.co.kr/learn/courses/30/lessons/42746)
+- PROGRAMMERS/큰 수 만들기(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42883)⭐
 - PROGRAMMERS/다리를 지나는 트럭(큐)[문제](https://programmers.co.kr/learn/courses/30/lessons/42583)⭐
 
 

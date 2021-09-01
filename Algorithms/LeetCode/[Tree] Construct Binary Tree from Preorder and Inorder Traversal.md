@@ -3,8 +3,8 @@
 
 
 ### 아이디어
-- p[0]은 root임
-- i에서 p[0] 값을 기준으로 좌측 서브트리와 우측 서브트리로 나뉨
+- p[0]은 root
+- i에서 p[0] 값을 기준으로 좌측 서브 트리와 우측 서브 트리로 나뉨
 
 ```java
 
@@ -26,9 +26,8 @@ class Solution {
                 break;
         
         
-        root.left = build(pStart+1, iStart, i-1, preorder, inorder);
-        root.right = build(pStart+1+i-iStart, i+1, iEnd, preorder, inorder); //우측의 시작점은 pStart+1+좌측노드 수
-        //우측의 시작점이 위와 같은 이유는 preorder의 경우 좌측방문을 완전히 끝낸 후 우측에 방문하기 때문 --> curr->left(1->... ->N)->right(1->...->N)
+        root.left = build(pStart+1, iStart, i-1, preorder, inorder); //좌측 노드는 루트의 바로 다음
+        root.right = build(pStart+1+i-iStart, i+1, iEnd, preorder, inorder); //우측 노드는 루트 이후 연속된 좌측 노드 이후 root->left(1->... ->N)->right(1->...->N)
         return root;
     }
     
