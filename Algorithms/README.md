@@ -410,14 +410,53 @@ public int findNotVisitedNearestNode(int[] dist, boolean[] visited) {
 
 
 ## 크루스칼 알고리즘(Kruskal Algorithm)
-최소 신장 트리(MST; Minimum Spanning Tree)를 구하는데 사용되는 알고리즘. 노드가 N개로 이루어질 경우,
-전체 노드 N개를 N-1개의 간선으로 이동하는데 가중치를 최소로 해야한다. (사이클은 존재하지 않아야 함)
+최소 신장 트리(MST; Minimum Spanning Tree)를 구하는데 사용되는 알고리즘. 노드가 N개인 그래프에서 최소 가중치로 사이클이 없이 모든 노드를 잇는 알고리즘이다.
+시간복잡도는 O(ElogE)이다. (간선을 기준으로 정렬하는 과정이 O(ElogE)이고, 간선을 순회하는 것은 O(E)이기 때문이다.)
 
 ```
 구현 방법
- 1. 간선을 오름차순 정렬
- 2. 사이클이 생성되지 않는 가중치가 가장 작은 간선부터 선택
+ 1. 전체 간선 중 가중치가 최소인 간선을 추출
+ 2. 간선의 두 노드가 사이클이 아닌경우, 간선을 추가
  3. N-1개의 간선이 선택될 때까지 반복
+```
+
+```java
+static int[] parent;
+public static void main(String[] args) {
+        //0. union -find 설정
+        parent = new int[N+1];
+        for(int i=0; i<N+1; i++)
+            parent[i]=i;
+
+        //1. 간선을 가중치 순서로 정렬 
+        //int[3]: [0]node1, [1]node2, [2]weight
+        Collections.sort(edges, new Comparator<int[]>(){
+            @Override
+            public int compare(int[] o1, int[] o2){
+                return o1[2] - o2[2];
+            }
+        });
+
+        List<int[]> results = new ArrayList();
+        int sum = 0;
+
+        //2. 정렬된 간선 전체를 순회
+        for(int[] edge : edges){
+            //3. 같은 부모를 갖지 않는 경우 간선 추가
+            //a와 b가 같은 부모인 경우, a-b를 이으면 사이클이 생김
+            int a = find(edge[0]);
+            int b = find(edge[1]);
+
+            if(a==b)
+                continue;
+            
+            union(a, b);
+            results.add(edge);
+
+            sum+=edge[2];
+        }
+        System.out.println(sum);
+    }
 ```
 
 ## 트리의 지름 구하기
