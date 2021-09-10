@@ -180,6 +180,7 @@ i~j 까지 반복하면서 값을 구하는 O(n)의 시간 복잡도를 O(1)로 
 ```
 
 ## BFS
+너비 우선 탐색 알고리즘. 행렬 그래프를 활용해야 할 경우 dx,dy를 선언해서 구현.
 ```java
 void BFS(int start, int[][] graph, int[] path){
     Queue<Integer> queue = new LinkedList();
@@ -286,8 +287,16 @@ class Trie{
 }
 ```
 
+## 플로이드 워셜
+음의 가중치를 가진 사이클이 없는 그래프에서 모든 쌍에 대한 최단거리를 찾는 알고리즘. i에서 k를 거쳐 j로 가는 경우와 i에서 j로 단번에 가는 경우를 비교해서 더 작은 값으로 갱신한다. 
+```python
+for k in range(1,V+1):
+    for i in range(1,V+1):
+        for j in range(1,V+1):
+            graph[i][j] = min(graph[i][k]+graph[k][j], graph[i][j])
+```
 
-## 다익스트라 알고리즘
+## 다익스트라
 가중치가 있는 방향 그래프에서 한 정점에서 나머지 정점까지의 최단 거리 및 경로를 구하고자 할 때 사용한다.
 ```
 만약 다익스트라 알고리즘 적용 결과로 *path={0,4,0,0,3,0}가 나올 경우,
@@ -304,6 +313,9 @@ class Trie{
 ```java
 //graph.get(X)는 start에서 다음으로 가는 간선 정보 포함
 ArrayList<ArrayList<Edge>> graph = new ArrayList();
+
+//경로 추적용 자료구조
+int[] parent = new int[n+1];
 
 //노드 수 만큼 리스트 추가 (0은 사용 안함)
 for(int i=0; i<n+1; i++){
@@ -333,6 +345,7 @@ class Edge implements Comparable<Edge>{
 }
 int[] dijkstra(int start, ArrayList<ArrayList<Edge>> graph, int n){
     PriorityQueue<Edge> pq = new PriorityQueue<>();
+    List<int> path = new ArrayList();
     boolean[] visited = new boolean[n+1];
     int[] dist = new int[n+1];
         
@@ -353,6 +366,8 @@ int[] dijkstra(int start, ArrayList<ArrayList<Edge>> graph, int n){
             if(cost < dist[next.point]){
                 dist[next.point] = cost;
                 pq.add(new Edge(next.point, cost));
+
+                parent[next.point] = edge.point;
             }
         }
     }
@@ -360,6 +375,19 @@ int[] dijkstra(int start, ArrayList<ArrayList<Edge>> graph, int n){
     return dist;
 }
 
+//https://youngest-programming.tistory.com/465
+public Stack<Integer> searchPath(int start, int end){
+    Stack<Integer> stack = new Stack();
+    int cur = end;
+
+    while(cur != start){
+        stack.push(end);
+        cur = parent[cur];
+    }
+    stack.push(cur); //start 추가
+
+    return stack;
+}
 ```
 
 
