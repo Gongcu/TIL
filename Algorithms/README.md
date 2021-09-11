@@ -1,26 +1,28 @@
-## 의미 있는 문제
-- BOJ/가장 먼 곳(다익스트라)[문제](https://www.acmicpc.net/problem/22865)⭐
-- BOJ/키 순서(플로이드 워셜)[문제](https://www.acmicpc.net/problem/2458)⭐
-- BOJ/미로 탐색(DP)[문제](https://www.acmicpc.net/problem/2178)⭐
-- BOJ/사다리(이진 탐색)[문제](https://www.acmicpc.net/problem/2022)
-- BOJ/여행가자(Union-Find)[문제](https://www.acmicpc.net/problem/1976) ⭐
+# 알고리즘 정리
+<HR>
 
-- LeetCode/빗물 트래픽(분할 정복)[문제](https://leetcode.com/problems/trapping-rain-water/)
-- LeetCode/가장 긴 팰린드롬 문자열(DP)[문제](https://leetcode.com/problems/longest-palindromic-substring/)⭐
-- LeetCode/중복 문자 제거-사전식 나열(스택)[문제](https://leetcode.com/problems/remove-duplicate-letters/)⭐
-- LeetCode/반복되는 문자가 없는 가장 긴 문자열(문자열)[문제](https://leetcode.com/problems/longest-substring-without-repeating-characters/)⭐
-- LeetCode/Course Schedule(DFS 사이클)[문제](https://leetcode.com/problems/course-schedule/)⭐
-- LeetCode/자기 자신을 제외한 곱(구현)[문제](https://leetcode.com/problems/product-of-array-except-self/)
-- LeetCode/Preoder,Inorder로 트리 만들기 [문제](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+## 목차
+1. [다중 조건 정렬(Comparable, Comparator)](#다중-조건-정렬)
+2. [이진 탐색](#이진-탐색)
+3. [백트래킹](#백-트래킹(back-tracking))
+4. [Two Pointer](#two-pointer)
+5. [구간 합](#구간-합)
+6. [BFS](#bfs)
+7. [DFS](#dfs)
+8. [위상 정렬](#위상-정렬)
+9. [Dynamic Programming](#dynamic-programming)
+10. [Greedy](#greedy)
+11. [Trie](#trie)
+12. [플로이드 워셜](#플로이드-워셜)
+13. [다익스트라](#다익스트라)
+14. [Trie](#trie)
+15. [Kruskal(MST)](#크루스칼-알고리즘)
+16. [트리의 지름 구하기](#트리의-지름-구하기)
+17. [유니온 파인드](#union-find)
+18. [에라토스테네스의 체](#에라토스테네스의-체)
+19. [의미 있는 문제](#의미-있는-문제)
 
-- PROGRAMMERS/n 진수 게임(구현)[문제](https://programmers.co.kr/learn/courses/30/lessons/17687)
-- PROGRAMMERS/단속카메라(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42884)⭐
-- PROGRAMMERS/가장 큰 수(문자열, 정렬)[문제](https://programmers.co.kr/learn/courses/30/lessons/42746)
-- PROGRAMMERS/큰 수 만들기(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42883)⭐
-- PROGRAMMERS/다리를 지나는 트럭(큐)[문제](https://programmers.co.kr/learn/courses/30/lessons/42583)⭐
-
-
-- HackerRank/Product Defects(DP)
+<HR>
 
 ## 다중 조건 정렬
 아래는 학번, 이름, 주소순으로 정렬하는 예제
@@ -113,8 +115,7 @@ while(start<=end){
 ```
 
 ## 백 트래킹(Back Tracking)
-==모든 경우의 수==를 찾을 때 효율적으로 찾는 알고리즘. Decision Space라는 모든 경우의 수를 따지면서
-더 이상 계산이 필요 없는 경우의 수는 제거하는 방법으로 진행된다.
+*모든 경우의 수*를 찾을 때 효율적으로 찾는 알고리즘. Decision Space라는 모든 경우의 수를 따지면서 더 이상 계산이 필요 없는 경우의 수는 제거하는 방법으로 진행된다.
 
 ```
 예제. 전화기 키패드 문제
@@ -226,7 +227,7 @@ void DFS(int start, int[][] graph; boolean[] visited){
 }
 ```
 
-## 위상 정렬(Topology Sort)
+## 위상 정렬
 사이클이 없는 방향 그래프의 모든 노드를 방향성에 거스르지 않게 반복하는 것. 예를 들어, 선수과목을 과목을 고려한 학습 순서를 설정하는 문제로 출시된다. DFS 혹은 Queue를 이용하여 구현할 수 있다. 위상 정렬에서는 여러 가지 답이 존재할 수도 있다(한 단계에서 큐에 2개 이상의 원소가 삽입되는 경우). 만약, 모든 원소를 방문하기 전에 Queue가 빈다면 사이클이 존재한다. 시간 복잡도는 O(V+E)이다.
 - 진입차수: 특정한 노드로 들어오는 간선의 수
 - 진출차수: 특정한 노드에서 나가는 간선의 수
@@ -274,10 +275,10 @@ for i in result
 ```
 
 
-## DP(Dynamic Programming)
-메인 문제가 서브 문제로 이루어지며, 서브 문제의 결과를 이용하여 메인 문제를 풀 수 있다. 이전 결과가 이후 결과에 사용된다. ==몇 가지 경우가 있는가?== 와 같은 문제에 주로 사용된다. 그 외에도 여러 알고리즘으로 풀이를 시도해보았으나 적절하지 않을 때 주로 DP가 해법이 된다.
+## Dynamic Programming
+메인 문제가 서브 문제로 이루어지며, *서브 문제의 결과를 이용하여 메인 문제를 풀 수 있다. 이전 결과가 이후 결과에 사용된다.* *몇 가지 경우가 있는가?* 와 같은 문제에 주로 사용된다. 그 외에도 여러 알고리즘으로 풀이를 시도해보았으나 적절하지 않을 때 주로 DP가 해법이 된다.
 - 최적 부분 구조
-- <u>중복되는 부분 문제</u> => ==점화식==
+- <u>중복되는 부분 문제</u> => 점화식
 
 ##### 메모이제이션(Memoization) - Bottom-Up
 재귀함수로 구현되며 Bottom-Up(상향식)으로 구현하며 필요한 계산만 하게 되어 더 효율적이다. (메모이제이션 할 배열 필요.)
@@ -296,7 +297,7 @@ ex. 화폐 단위가 1/5/10이고 106원이 존재할 때, 가장 적은 수의 
 -> 두번째로는 5로 ...
 ```
 
-## 트라이(Trie)
+## Trie
 문자열 검색 및 처리를 위한 알고리즘. 하나의 문자를 노드로 생각하여 트리 구조에 저장하게 된다. 각 노드는 <Char,Node>로 구성되는 맵을 포함한다.
  - 장점. 문자열 검색에 O(n)의 시간 필요
  - 기존 방식. 문자열을 String으로 저장하여 m개의 문자열 중 길이 n의 문자열을 찾는 경우 O(mn)이 소요됨
@@ -486,7 +487,7 @@ public int findNotVisitedNearestNode(int[] dist, boolean[] visited) {
 ```
 
 
-## 크루스칼 알고리즘(Kruskal Algorithm)
+## 크루스칼 알고리즘
 최소 신장 트리(MST; Minimum Spanning Tree)를 구하는데 사용되는 알고리즘. 노드가 N개인 그래프에서 최소 가중치로 사이클이 없이 모든 노드를 잇는 알고리즘이다.
 시간복잡도는 O(ElogE)이다. (간선을 기준으로 정렬하는 과정이 O(ElogE)이고, 간선을 순회하는 것은 O(E)이기 때문이다.)
 
@@ -549,7 +550,7 @@ public static void main(String[] args) {
 ![trie](../images/tree.png)
 
 
-## 유니온 파인드 (Union-Find)
+## Union Find
 대표적인 그래프 알고리즘으로 **합집합 찾기** 혹은 **서로소 집합**이라는 의미를 가진다. 여러 노드가 존재할 때, 두 개의 노드를 선택하여 두 노드가 서로 같은 그래프에 속하는지 판별할 때 사용한다.
 ```
 구현 방법
@@ -608,3 +609,26 @@ for i in range(2,int(math.sqrt(n))+1):
             array[i*j]=False
             j+=1
 ```
+
+## 의미 있는 문제
+- BOJ/가장 먼 곳(다익스트라)[문제](https://www.acmicpc.net/problem/22865)⭐
+- BOJ/키 순서(플로이드 워셜)[문제](https://www.acmicpc.net/problem/2458)⭐
+- BOJ/미로 탐색(DP)[문제](https://www.acmicpc.net/problem/2178)⭐
+- BOJ/사다리(이진 탐색)[문제](https://www.acmicpc.net/problem/2022)
+- BOJ/여행가자(Union-Find)[문제](https://www.acmicpc.net/problem/1976) ⭐
+
+- LeetCode/빗물 트래픽(분할 정복)[문제](https://leetcode.com/problems/trapping-rain-water/)
+- LeetCode/가장 긴 팰린드롬 문자열(DP)[문제](https://leetcode.com/problems/longest-palindromic-substring/)⭐
+- LeetCode/중복 문자 제거-사전식 나열(스택)[문제](https://leetcode.com/problems/remove-duplicate-letters/)⭐
+- LeetCode/반복되는 문자가 없는 가장 긴 문자열(문자열)[문제](https://leetcode.com/problems/longest-substring-without-repeating-characters/)⭐
+- LeetCode/Course Schedule(DFS 사이클)[문제](https://leetcode.com/problems/course-schedule/)⭐
+- LeetCode/자기 자신을 제외한 곱(구현)[문제](https://leetcode.com/problems/product-of-array-except-self/)
+- LeetCode/Preoder,Inorder로 트리 만들기 [문제](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+- PROGRAMMERS/n 진수 게임(구현)[문제](https://programmers.co.kr/learn/courses/30/lessons/17687)
+- PROGRAMMERS/단속카메라(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42884)⭐
+- PROGRAMMERS/가장 큰 수(문자열, 정렬)[문제](https://programmers.co.kr/learn/courses/30/lessons/42746)
+- PROGRAMMERS/큰 수 만들기(그리디)[문제](https://programmers.co.kr/learn/courses/30/lessons/42883)⭐
+- PROGRAMMERS/다리를 지나는 트럭(큐)[문제](https://programmers.co.kr/learn/courses/30/lessons/42583)⭐
+
+- HackerRank/Product Defects(DP)
