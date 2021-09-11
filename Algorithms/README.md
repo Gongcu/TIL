@@ -226,6 +226,54 @@ void DFS(int start, int[][] graph; boolean[] visited){
 }
 ```
 
+## 위상 정렬(Topology Sort)
+사이클이 없는 방향 그래프의 모든 노드를 방향성에 거스르지 않게 반복하는 것. 예를 들어, 선수과목을 과목을 고려한 학습 순서를 설정하는 문제로 출시된다. DFS 혹은 Queue를 이용하여 구현할 수 있다. 위상 정렬에서는 여러 가지 답이 존재할 수도 있다(한 단계에서 큐에 2개 이상의 원소가 삽입되는 경우). 만약, 모든 원소를 방문하기 전에 Queue가 빈다면 사이클이 존재한다. 시간 복잡도는 O(V+E)이다.
+- 진입차수: 특정한 노드로 들어오는 간선의 수
+- 진출차수: 특정한 노드에서 나가는 간선의 수
+![topology]](../images/topology.png)
+
+##### Queue를 이용한 위상 정렬 알고리즘
+0. 진입 차수 배열을 생성하고 0으로 초기화, 리스트 그래프에 간선을 추가하며 진입 차수 갱신
+1. 진입차수가 0인 모든 노드를 Queue에 삽입
+2. while(!queue.isEmpty())
+    - 큐에서 원소를 꺼내 해당 노드에서 나가는 간선을 그래프에서 제거
+    - 새롭게 진입차수가 0이 된 노드를 Queue에 삽입
+→ 각 노드가 Queue 들어온 순서가 위상 정렬 결과
+
+```python
+# v:노드 수, e:간선 수
+indegree = [0] * (v+1)
+graph = [[] for i in range(v+1)]
+
+# 그래프 초기화 및 진입 차수 갱신
+for _ in range(e):
+    a, b = map(int,input().split())
+    graph[a].append(b)
+    indegree[b] += 1
+
+# 위상 정렬
+result = []
+q = deque()
+
+for i in range(1, v+1):
+    if indegree[i]==0:
+        q.append(i)
+
+while q:
+    curr = q.popLeft()
+    result.append(curr)
+
+    for next in graph[curr]:
+        indegree[next]-=1
+        if indegree[next]==0:
+            q.append(next)
+
+# 결과 출력
+for i in result
+    print(i, end=' ')
+```
+
+
 ## DP(Dynamic Programming)
 메인 문제가 서브 문제로 이루어지며, 서브 문제의 결과를 이용하여 메인 문제를 풀 수 있다. 이전 결과가 이후 결과에 사용된다. ==몇 가지 경우가 있는가?== 와 같은 문제에 주로 사용된다. 그 외에도 여러 알고리즘으로 풀이를 시도해보았으나 적절하지 않을 때 주로 DP가 해법이 된다.
 - 최적 부분 구조
