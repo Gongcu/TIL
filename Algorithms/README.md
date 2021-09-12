@@ -616,6 +616,7 @@ for i in range(2,int(math.sqrt(n))+1):
 - BOJ/미로 탐색(DP)[문제](https://www.acmicpc.net/problem/2178)⭐
 - BOJ/사다리(이진 탐색)[문제](https://www.acmicpc.net/problem/2022)
 - BOJ/여행가자(Union-Find)[문제](https://www.acmicpc.net/problem/1976) ⭐
+- BOJ/2차원 배열의 합(DP)[문제](https://www.acmicpc.net/problem/1976) ⭐
 
 - LeetCode/빗물 트래픽(분할 정복)[문제](https://leetcode.com/problems/trapping-rain-water/)
 - LeetCode/가장 긴 팰린드롬 문자열(DP)[문제](https://leetcode.com/problems/longest-palindromic-substring/)⭐
